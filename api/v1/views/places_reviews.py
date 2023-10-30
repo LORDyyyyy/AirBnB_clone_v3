@@ -58,7 +58,7 @@ def create_review(place_id):
     user = storage.get(User, data['user_id'])
     if user is None:
         abort(404)
-    # data['place_id'] = place_id
+    data['place_id'] = place_id
     new_review = Place(**data)
     new_review.save()
     return jsonify(new_review.to_dict()), 201
