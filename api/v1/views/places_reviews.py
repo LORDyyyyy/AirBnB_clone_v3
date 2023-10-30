@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""places API"""
+"""reviews API"""
 from flask import jsonify, request, abort
 from api.v1.views import app_views
 from models.user import User
@@ -58,7 +58,7 @@ def create_review(place_id):
     user = storage.get(User, data['user_id'])
     if user is None:
         abort(404)
-    #data['place_id'] = place_id
+    # data['place_id'] = place_id
     new_review = Place(**data)
     new_review.save()
     return jsonify(new_review.to_dict()), 201
@@ -74,7 +74,8 @@ def update_place(review_id):
     if data is None:
         abort(400, 'Not a JSON')
     for key, value in data.items():
-        if key not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
+        if key not in ['id', 'user_id', 'place_id', 'created_at',
+                       'updated_at']:
             setattr(review, key, value)
     review.save()
     return jsonify(review.to_dict()), 200
