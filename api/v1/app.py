@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" API """
+"""RESTFul API"""
 import os
 from flask import Flask, jsonify
 from models import storage
@@ -24,5 +24,5 @@ def not_found(error):
 
 if __name__ == "__main__":
     host = os.getenv('HBNB_API_HOST', '0.0.0.0')
-    port = int(os.getenv('HBNB_API_PORT', '5000'))
-    app.run(host=host, port=port, threaded=True)
+    port = os.getenv('HBNB_API_PORT', '5000')
+    app.run(host=host, port=int(port), threaded=True)

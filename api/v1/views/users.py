@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" """
-from api.v1.views import app_views
+"""users API"""
 from flask import jsonify, request, abort
+from api.v1.views import app_views
 from models.user import User
 from models import storage
 
