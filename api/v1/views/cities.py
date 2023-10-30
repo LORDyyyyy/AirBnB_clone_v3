@@ -11,10 +11,11 @@ from models import storage
                  strict_slashes=False)
 def get_state_citis(state_id):
     """ get all cities by states"""
+    state = storage.get(State, state_id)
+    if state is None:
+        abort(404)
     cities = storage.all(City).values()
     cities = [val for val in cities if val.state_id == state_id]
-    if cities is None or len(cities) == 0:
-        abort(404)
     return jsonify([city.to_dict() for city in cities])
 
 
